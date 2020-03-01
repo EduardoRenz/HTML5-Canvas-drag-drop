@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Drag And Drop</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="game.js"></script>
+    <script src="component.js"></script>
+</head>
+<body onload="startGame()">
+    <canvas id="canvas" style="border:1px solid #000000;"></canvas>
+</body>
+</html>
+
+<script>
+    let game = null
+    function startGame() {
+        game = new Game()
+        game.start();
+    }
+
+    let components = [
+        new Component(400,20,100,100,'red'),
+        new Component(20,20,100,100,'blue'),
+    ]
+
+
+    function update() {
+        game.clear()
+        game.context.font = "30px Arial";
+        game.context.fillStyle = "black";
+        game.context.fillText(`x:${game.mouseX} y:${game.mouseY}`, game.canvas.width - 200, 50); 
+        game.context.fillText(`dragging:${game.isdragging}`, game.canvas.width - 200, 100); 
+        game.context.fillText(`last not x:${game.lastMouseX} y:${game.mouseY}`, game.canvas.width - 200, 150); 
+
+        for (const square of components) {
+            square.draw()
+        }
+     
+  
+    }
+
+
+
+
+
+
+
+
+
+
+
+</script>
