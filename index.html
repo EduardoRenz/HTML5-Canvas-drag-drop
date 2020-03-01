@@ -23,6 +23,7 @@
     let components = [
         new Component(400,20,100,100,'red'),
         new Component(20,20,100,100,'blue'),
+        new Component(200,20,100,100,'green'),
     ]
 
 
@@ -32,7 +33,6 @@
         game.context.fillStyle = "black";
         game.context.fillText(`x:${game.mouseX} y:${game.mouseY}`, game.canvas.width - 200, 50); 
         game.context.fillText(`dragging:${game.isdragging}`, game.canvas.width - 200, 100); 
-        game.context.fillText(`last not x:${game.lastMouseX} y:${game.mouseY}`, game.canvas.width - 200, 150); 
 
         for (const square of components) {
             square.draw()

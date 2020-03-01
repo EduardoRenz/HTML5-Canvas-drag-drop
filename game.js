@@ -13,8 +13,8 @@ class Game {
         this.mouseX = 0
         this.mouseY =0
 
-        this.lastMouseX = 0
-        this.lastMouseY = 0
+        this.lastMouseX = 0 //Last since not dragging
+        this.lastMouseY = 0 //Last since not dragging
 
         this.rect =  canvas.getBoundingClientRect();
         

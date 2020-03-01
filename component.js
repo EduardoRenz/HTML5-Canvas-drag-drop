@@ -10,6 +10,10 @@ class Component {
         this.is_draggable = true
         this.is_dragging = false
 
+
+        this.lastX = 0 //Last since not dragging
+        this.lastY = 0 //Last since not dragging
+
         
     }
     
@@ -39,8 +43,12 @@ class Component {
             game.context.stroke()
             game.context.strokeRect(this.x , this.y , this.width, this.height)
 
-            if(game.isdragging){
+            if(game.isdragging && !components.some(x=>{return x.is_dragging}) ){
                 this.is_dragging = true
+            }
+            if(!this.is_dragging){
+                this.lastX = game.mouseX
+                this.lastY = game.mouseY
             }
 
         }
@@ -50,9 +58,13 @@ class Component {
     }
 
     dragging(){
-        this.x =  game.mouseX 
-        //this.y =  game.mouseY 
-        console.log('depos',game.mouseX )
+        let offsetX = game.mouseX - this.lastX
+        let offsetY = game.mouseY - this.lastY
+        this.x += offsetX
+        this.y += offsetY
+        this.lastX = game.mouseX
+        this.lastY = game.mouseY
+
     }
 
 
