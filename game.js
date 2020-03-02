@@ -8,7 +8,7 @@ class Game {
         this.canvas.width = 1100;
         this.canvas.height = 200;
         this.context = this.canvas.getContext("2d");
-        this.interval = setInterval(update, 30/1000);   
+        this.interval = setInterval(update, 60/1000);   
         this.isdragging = false
         this.mouseX = 0
         this.mouseY =0
@@ -24,8 +24,6 @@ class Game {
             for (const component of components) {
                 component.is_dragging = false
             }
-        
-        
         }
         this.canvas.onmousemove = (evt) =>{ 
             evt.preventDefault();

@@ -57,24 +57,23 @@ class Component {
         this.x += offsetX
         this.y += offsetY
 
-        if(game.rect.right <= this.x+this.width){
-            this.x = game.rect.right - this.width
+        if(game.canvas.width <= this.x+this.width){
+            this.x = game.canvas.width - this.width
         }
-        if(game.rect.left >= this.x){
-            this.x = game.rect.left
-        }
-
-        if(game.rect.top >= this.y){
-            this.y = game.rect.top
+        if(0 >= this.x){
+            this.x = 0
         }
 
-        if(game.rect.bottom <= this.y + this.height){
-            this.y = game.rect.bottom - this.height
+        if(0 >= this.y){
+            this.y =0
+        }
+
+        if(game.canvas.height <= this.y + this.height){
+            this.y = game.canvas.height - this.height
         }
 
         this.lastX = game.mouseX
         this.lastY = game.mouseY
-
     }
 
 
