@@ -6,7 +6,7 @@ class Game {
     }
     start () {
         this.canvas.width = 1100;
-        this.canvas.height = 800;
+        this.canvas.height = 200;
         this.context = this.canvas.getContext("2d");
         this.interval = setInterval(update, 30/1000);   
         this.isdragging = false

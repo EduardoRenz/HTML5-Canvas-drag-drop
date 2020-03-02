@@ -7,13 +7,29 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <script src="game.js"></script>
     <script src="component.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body onload="startGame()">
-    <canvas id="canvas" style="border:1px solid #000000;"></canvas>
+    <h3>Canvas</h3>
+    <canvas id="canvas" style="border:1px solid #b2b2b2;"></canvas>
+    <h3>HTML</h3>
+    <section id="htmlcanvas">
+        <div class="box_container">
+            <div class="box">
+                <div id="item" class="item" draggable="true"></div>
+            </div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+
+    </section>
+
+
 </body>
 </html>
 
 <script>
+    //Canvas experiment code
     let game = null
     function startGame() {
         game = new Game()
@@ -26,7 +42,6 @@
         new Component(200,20,100,100,'green'),
     ]
 
-
     function update() {
         game.clear()
         game.context.font = "30px Arial";
@@ -38,17 +53,38 @@
             square.draw()
         }
      
-  
+    }
+
+    //HTML experiment code
+
+    const boxes = document.querySelectorAll(".box")
+
+    for (const box of boxes) {
+        box.addEventListener('dragover',(e)=>{
+            e.preventDefault()
+            //console.log('passou por cima')
+        })
+        box.addEventListener('dragleave',()=>{
+            console.log('leave')
+        })
+        box.addEventListener('drop',(evt)=>{
+            console.log('largou aqui')
+            console.log(evt.target.appendChild(item))
+        })
     }
 
 
+    let item = document.querySelector("#item")
+    item.addEventListener('drag',()=>{
+        item.style.visibility = 'hidden'
+        //console.log('dragging')
 
+    })
+    item.addEventListener('dragend',(evt)=>{
 
-
-
-
-
-
+    item.style.visibility = 'visible'
+        //console.log(evt)
+    })
 
 
 </script>
