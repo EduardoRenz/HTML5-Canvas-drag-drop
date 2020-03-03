@@ -34,6 +34,8 @@
     //Canvas experiment code
     let environment =null
     let components = null
+    let htmlcanvas = document.querySelector('#htmlcanvas')
+    let movable = new Movable("#movable")
 
     function startGame() {
         environment = new Environment()
@@ -45,10 +47,7 @@
         ]
 
         environment.components = components
-
         environment.start();
-        let htmlcanvas = document.querySelector('#htmlcanvas')
-        let movable = new Movable("#movable")
     }
 
 
