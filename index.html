@@ -32,33 +32,28 @@
 
 <script>
     //Canvas experiment code
-    let environment = null
+    let environment =null
+    let components = null
+
     function startGame() {
         environment = new Environment()
+
+        components = [
+            new Component(400,20,100,100,'red'),
+            new Component(20,20,100,100,'blue'),
+            new Component(200,20,100,100,'green'),
+        ]
+
+        environment.components = components
+
         environment.start();
         let htmlcanvas = document.querySelector('#htmlcanvas')
         let movable = new Movable("#movable")
-        return {
-            environment
-        }
     }
 
-    let components = [
-        new Component(400,20,100,100,'red'),
-        new Component(20,20,100,100,'blue'),
-        new Component(200,20,100,100,'green'),
-    ]
 
-    function update() {
-        environment.clear()
-        environment.log()
 
-        for (const square of components) {
-            square.draw()
-        }
-     
-    }
-
+    
    
 
 </script>

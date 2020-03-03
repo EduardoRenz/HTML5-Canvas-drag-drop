@@ -4,13 +4,12 @@ class Environment {
     constructor(){
         this.canvas = document.querySelector("#canvas")
         this.context = this.canvas.getContext("2d");
-        this.interval = setInterval(update, 60/1000);  
+
     }
     start () {
         this.canvas.width = 1100;
         this.canvas.height = 200;
-        
-         
+        this.interval = setInterval(this.update.bind(this), 60/1000);  
         this.isdragging = false
         this.mouseX = 0
         this.mouseY =0
@@ -54,5 +53,14 @@ class Environment {
         this.context.fillText(`dragging:${this.isdragging}`, this.canvas.width - 200, 100); 
     }
 
+
+    update(){
+        this.clear()
+        this.log()
+
+        for (const component of this.components) {
+            component.draw()
+        }
+    }
 
 }
