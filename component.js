@@ -15,20 +15,20 @@ class Component {
     }
 
     _mouseInside(){
-        let isX =  (game.mouseX >= this.x && game.mouseX <= this.x + this.width)
-        let isY = (game.mouseY >= this.y && game.mouseY <= this.y + this.height)
+        let isX =  (environment.mouseX >= this.x && environment.mouseX <= this.x + this.width)
+        let isY = (environment.mouseY >= this.y && environment.mouseY <= this.y + this.height)
 
         if( isX && isY) {
-            game.canvas.style.cursor = 'pointer'
-            game.context.strokeStyle  = 'black'
-            game.context.stroke()
-            game.context.strokeRect(this.x , this.y , this.width, this.height)
+            environment.canvas.style.cursor = 'pointer'
+            environment.context.strokeStyle  = 'black'
+            environment.context.stroke()
+            environment.context.strokeRect(this.x , this.y , this.width, this.height)
         }
         return isX && isY
     }
     
     draw(){
-        let ctx = game.context;
+        let ctx = environment.context;
         //myGameArea.clearRect(this.x, this.y, this.w, this.h);
         this.is_draggable && this._checkCanGrab()
         this.is_dragging && this.dragging()
@@ -38,27 +38,27 @@ class Component {
 
     _checkCanGrab(){
         if( this._mouseInside()){
-            if(game.isdragging && !components.some(x=>{return x.is_dragging}) ){
+            if(environment.isdragging && !components.some(x=>{return x.is_dragging}) ){
                 this.is_dragging = true
             }
             if(!this.is_dragging){
-                this.lastX = game.mouseX
-                this.lastY = game.mouseY
+                this.lastX = environment.mouseX
+                this.lastY = environment.mouseY
             }
         }
        else {
-        game.canvas.style.cursor = ''
+        environment.canvas.style.cursor = ''
        }
     }
 
     dragging(){
-        let offsetX = game.mouseX - this.lastX
-        let offsetY = game.mouseY - this.lastY
+        let offsetX = environment.mouseX - this.lastX
+        let offsetY = environment.mouseY - this.lastY
         this.x += offsetX
         this.y += offsetY
 
-        if(game.canvas.width <= this.x+this.width){
-            this.x = game.canvas.width - this.width
+        if(environment.canvas.width <= this.x+this.width){
+            this.x = environment.canvas.width - this.width
         }
         if(0 >= this.x){
             this.x = 0
@@ -68,12 +68,12 @@ class Component {
             this.y =0
         }
 
-        if(game.canvas.height <= this.y + this.height){
-            this.y = game.canvas.height - this.height
+        if(environment.canvas.height <= this.y + this.height){
+            this.y = environment.canvas.height - this.height
         }
 
-        this.lastX = game.mouseX
-        this.lastY = game.mouseY
+        this.lastX = environment.mouseX
+        this.lastY = environment.mouseY
     }
 
 

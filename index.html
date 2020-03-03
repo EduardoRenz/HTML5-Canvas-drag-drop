@@ -5,8 +5,10 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Drag And Drop</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <script src="game.js"></script>
+    <script src="environment.js"></script>
     <script src="component.js"></script>
+    <script src="movable.js"></script>
+   
     <link rel="stylesheet" href="style.css">
 </head>
 <body onload="startGame()">
@@ -22,18 +24,23 @@
             <div class="box"></div>
         </div>
 
+        <div id="movable" draggable="true"></div>
+
     </section>
-
-
 </body>
 </html>
 
 <script>
     //Canvas experiment code
-    let game = null
+    let environment = null
     function startGame() {
-        game = new Game()
-        game.start();
+        environment = new Environment()
+        environment.start();
+        let htmlcanvas = document.querySelector('#htmlcanvas')
+        let movable = new Movable("#movable")
+        return {
+            environment
+        }
     }
 
     let components = [
@@ -43,11 +50,8 @@
     ]
 
     function update() {
-        game.clear()
-        game.context.font = "30px Arial";
-        game.context.fillStyle = "black";
-        game.context.fillText(`x:${game.mouseX} y:${game.mouseY}`, game.canvas.width - 200, 50); 
-        game.context.fillText(`dragging:${game.isdragging}`, game.canvas.width - 200, 100); 
+        environment.clear()
+        environment.log()
 
         for (const square of components) {
             square.draw()
@@ -55,36 +59,7 @@
      
     }
 
-    //HTML experiment code
-
-    const boxes = document.querySelectorAll(".box")
-
-    for (const box of boxes) {
-        box.addEventListener('dragover',(e)=>{
-            e.preventDefault()
-            //console.log('passou por cima')
-        })
-        box.addEventListener('dragleave',()=>{
-            console.log('leave')
-        })
-        box.addEventListener('drop',(evt)=>{
-            console.log('largou aqui')
-            console.log(evt.target.appendChild(item))
-        })
-    }
-
-
-    let item = document.querySelector("#item")
-    item.addEventListener('drag',()=>{
-        item.style.visibility = 'hidden'
-        //console.log('dragging')
-
-    })
-    item.addEventListener('dragend',(evt)=>{
-
-    item.style.visibility = 'visible'
-        //console.log(evt)
-    })
-
+   
 
 </script>
+<script src="dragdrop.js"></script>
